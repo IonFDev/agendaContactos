@@ -12,7 +12,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $contacts = Contact::all();
+        return view('contact.index', compact('contacts'));
     }
 
     /**
@@ -20,7 +21,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('contact.create');
     }
 
     /**
@@ -36,7 +37,8 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+        $contact = Contact::findOrFail($contact->id);
+        return view('contact.show', compact('contact'));
     }
 
     /**
@@ -44,7 +46,8 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        //
+        $contact = Contact::findOrFail($contact->id);
+        return view('contact.edit', compact('contact'));
     }
 
     /**
@@ -60,6 +63,7 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+        return redirect()->route('contacts.index');
     }
 }
