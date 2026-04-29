@@ -13,7 +13,7 @@ class ContactController extends Controller
     public function index()
     {
         $contacts = Contact::all();
-        return view('contact.index', compact('contacts'));
+        return view('contacts.index', compact('contacts'));
     }
 
     /**
@@ -21,7 +21,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return view('contact.create');
+        return view('contacts.create');
     }
 
     /**
@@ -29,7 +29,15 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:contacts,email',
+            'phone' => 'nullable|string|max:20',
+        ]);
+
+        Contact::create($request->all());
+        return redirect()->route('contacts.index');
+
     }
 
     /**
@@ -38,7 +46,7 @@ class ContactController extends Controller
     public function show(Contact $contact)
     {
         $contact = Contact::findOrFail($contact->id);
-        return view('contact.show', compact('contact'));
+        return view('contacts.show', compact('contact'));
     }
 
     /**
@@ -47,7 +55,7 @@ class ContactController extends Controller
     public function edit(Contact $contact)
     {
         $contact = Contact::findOrFail($contact->id);
-        return view('contact.edit', compact('contact'));
+        return view('contacts.edit', compact('contact'));
     }
 
     /**
@@ -55,7 +63,14 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:contacts,email,' . $contact->id,
+            'phone' => 'nullable|string|max:20',
+        ]);
+
+        $contact->update($request->all());
+        return redirect()->route('contacts.index');
     }
 
     /**
