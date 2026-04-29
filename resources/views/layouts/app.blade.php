@@ -9,7 +9,7 @@
             @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
 </head>
-<body class="min-h-screen bg-gradient-to-br from-slate-100 via-sky-50 to-white text-slate-900">
+<body class="min-h-screen bg-linear-to-br from-slate-100 via-sky-50 to-white text-slate-900">
     <div class="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
         <header class="flex flex-col gap-6 rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-xl shadow-slate-200/60 backdrop-blur-md sm:flex-row sm:items-center sm:justify-between">
             <div>
