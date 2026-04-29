@@ -9,7 +9,7 @@
         @else
             <ul class="divide-y divide-slate-200">
                 @foreach ($contacts as $contact)
-                    <li class="flex items-center justify-between py-4">
+                    <li class="flex items-center justify-between py-4 cursor-auto" onclick=" window.location='{{ route('contacts.show', $contact) }}';">
                         <div>
                             <p class="text-lg font-medium text-slate-900">{{ $contact->name }}</p>
                             <p class="text-sm text-slate-600">{{ $contact->email }}</p>
